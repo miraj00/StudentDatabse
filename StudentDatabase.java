@@ -1,3 +1,123 @@
+import java.util.Scanner;
+
+public class StudentDatabase {
+	public static void main(String[] args) {
+		String[] students = {"Maximilian", "Amanda", "Akhirah", "Miraj", "Andrew", "Austin",
+				"Ford", "Cedric", "Chloe", "Sierra"};
+		
+		String[] hometowns = {"Detroit, MI", "Flint, MI", "Lansing, MI", "Owosso, MI", "Rochester Hills, MI",
+				"Beverly Hills, MI", "Ferndale, MI", "Royal Oak, MI", "Auburn Hills, MI", "Troy, MI"};
+		
+		String[] favoriteFoods = new String[10];
+		favoriteFoods[0] = "Detroit-Style Pizza";
+		favoriteFoods[1] = "Coney Dogs";
+		favoriteFoods[2] = "Mackinac Island Fudge";
+		favoriteFoods[3] = "Vernors";
+		favoriteFoods[4] = "Faygo";
+		favoriteFoods[5] = "Biggby Coffee";
+		favoriteFoods[6] = "Pasties";
+		favoriteFoods[7] = "Poutine";
+		favoriteFoods[8] = "Better Made Chips";
+		favoriteFoods[9] = "Blake's Apple Cider";
+		
+		Scanner scan1 = new Scanner(System.in);
+		Scanner scan2 = new Scanner(System.in);
+		Scanner scan3 = new Scanner(System.in);
+		
+		System.out.println("To our Java Class!");
+		
+		boolean askingUser = true;
+		while (askingUser) {
+			System.out.println();
+			System.out.println("Which student would you like to know more about?");
+			System.out.print("Enter a number 1 - 10: ");
+			
+			int requestedNum = 0;
+			String foundStudent = "";
+			int numIndex = -1;
+			
+			try {
+	            	requestedNum = scan1.nextInt();
+	            	numIndex = requestedNum -1;
+	            	foundStudent = students[numIndex];
+			} catch (ArrayIndexOutOfBoundsException e) {
+				System.out.println();
+	            	System.out.println("Sorry, we don't have a student with that number.");
+	            	System.out.println("Please enter a number between 1 and  10 & let's try again!");
+			}  
+			
+			while (foundStudent != "") {
+				System.out.println();
+			      System.out.println("Student Number "+requestedNum+" is "+foundStudent+".");  	
+			      System.out.println();
+	        		System.out.println("What would you like to know about "+foundStudent+"?");
+	        		System.out.println("You can choose Hometown or Favorite Food.");
+	        		System.out.print("Your selection: ");
+	        		String userChoice = scan2.nextLine();    
+	        	
+	        		if (userChoice.equalsIgnoreCase("hometown")) {
+	        			System.out.println(findStudentHometown(hometowns, numIndex, foundStudent));
+					foundStudent = "";
+				}
+	        		else if (userChoice.equalsIgnoreCase("favorite food")) {
+	        			System.out.println(findStudentFaveFood(favoriteFoods, numIndex, foundStudent));
+					foundStudent = "";
+				}
+	        		else {
+	        			System.out.println("");
+	        			System.out.println("Sorry, that was not a valid choice. Let's try again.");
+	        	}
+	        	       	
+			boolean promptingToContinue = true;
+			while (promptingToContinue) {
+				System.out.println("");
+				System.out.println("Would you like to know more about another Student?");
+				System.out.println("Enter Yes to continue or No to Exit the Program.");
+				System.out.print("Your selection: ");
+				String userContinues = scan3.nextLine();
+					
+				if (userContinues.equalsIgnoreCase("yes")) {
+					promptingToContinue = true;
+					
+					
+					
+				}
+				else if (userContinues.equalsIgnoreCase("no")) {
+					askingUser = false; 
+					promptingToContinue = false;
+				}
+				else {
+					System.out.println();
+					System.out.println("Sorry, I didn't understand that response. Please try again.");
+				}
+			}
+		}
+			System.out.println();
+			System.out.println("Thanks for checking out this program about our Java class!");
+			System.out.println("Goodbye!");
+		}
+	}
+	
+	public static String findStudentFaveFood(String[] favoriteFoods, int numIndex, String foundStudent) {
+		String foundStudentFaveFood = favoriteFoods[numIndex];
+		System.out.println();
+		String result = foundStudent+"'s favorite food is "+foundStudentFaveFood+".";
+		return result;
+	}
+	
+	public static String findStudentHometown(String[] hometowns, int numIndex, String foundStudent) {
+		String foundStudentHometown = hometowns[numIndex];
+		System.out.println();
+		String result = foundStudent+"'s hometown is "+foundStudentHometown+".";
+		return result;
+	}
+}
+
+
+// ========================================================================================================================================
+
+
+/*
 import java.io.*;
 import java.util.Scanner;
 
@@ -113,10 +233,12 @@ public class StudentDatabase {
 
 }
 
+*/
 
 
 
 
+//  ================================================== Requirements  =============================================================================
 
 
 
